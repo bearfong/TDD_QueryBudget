@@ -14,8 +14,8 @@ public class QueryBudget {
     public double query(LocalDate startDate, LocalDate endDate) throws Exception{
 
         double sum = 0;
-        String queryStartDate = startDate.getYear() +"/"+ startDate.getMonth().getValue();
-        String queryEndDate = endDate.getYear() +"/"+ endDate.getMonth().getValue();
+        String queryStartDate = getQueryStartDate(startDate);
+        String queryEndDate = getQueryStartDate(endDate);
 
         if (startDate.isBefore(endDate) && !queryStartDate.equals(queryEndDate)) {
 
@@ -29,8 +29,8 @@ public class QueryBudget {
             sum += getBudgetByDate(queryStartDate).getAmount() * firstMonthDays;
             sum += getBudgetByDate(queryEndDate).getAmount() * lastMonthDays;
 
-            Integer startIndex = (getExistStartBudgetIndex(startDate) == getBudgetIndex(queryStartDate)) ? getBudgetIndex(queryStartDate) + 1: getExistStartBudgetIndex(startDate);
-            Integer endIndex = (getExistEndBudgetIndex(endDate) == getBudgetIndex(queryEndDate)) ? getBudgetIndex(queryEndDate) : getExistEndBudgetIndex(endDate) +1 ;
+            Integer startIndex = (getExistStartBudgetIndex(startDate).equals(getBudgetIndex(queryStartDate))) ? getBudgetIndex(queryStartDate) + 1: getExistStartBudgetIndex(startDate);
+            Integer endIndex = (getExistEndBudgetIndex(endDate).equals(getBudgetIndex(queryEndDate))) ? getBudgetIndex(queryEndDate) : getExistEndBudgetIndex(endDate) +1 ;
             for (int i=startIndex; i < endIndex ; i++ ){
                 sum += budgets.get(i).getAmount();
             }
@@ -54,12 +54,16 @@ public class QueryBudget {
         return sum;
     }
 
+    private String getQueryStartDate(LocalDate startDate) {
+        return startDate.getYear() + "/" + startDate.getMonth().getValue();
+    }
+
     public Integer getLengthOfMonth(LocalDate date) {
         return YearMonth.of(date.getYear(), date.getMonth()).lengthOfMonth();
     }
 
     public Integer getExistEndBudgetIndex(LocalDate date) {
-        String queryDate = date.getYear() +"/"+ date.getMonth().getValue();
+        String queryDate = getQueryStartDate(date);
         Integer idx = getBudgetIndex(queryDate);
         if(idx == -1){
             return getExistEndBudgetIndex(date.plusMonths(-1));
@@ -69,7 +73,7 @@ public class QueryBudget {
     }
 
     public Integer getExistStartBudgetIndex(LocalDate date) {
-        String queryDate = date.getYear() +"/"+ date.getMonth().getValue();
+        String queryDate = getQueryStartDate(date);
         Integer idx = getBudgetIndex(queryDate);
         if(idx == -1){
             return getExistStartBudgetIndex(date.plusMonths(1));
