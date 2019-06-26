@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="budget.QueryBudgetTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2019-06-26T09:56:59" hostname="TW-LW11605-M.local" time="0.087">
+  <properties/>
+  <testcase name="test_cross_empty_month" classname="budget.QueryBudgetTest" time="0.08"/>
+  <testcase name="test_query_cross_has_budget_date_range" classname="budget.QueryBudgetTest" time="0.0"/>
+  <testcase name="test_two_day_in_same_month" classname="budget.QueryBudgetTest" time="0.0"/>
+  <testcase name="test_query_include_no_budget_date_and_has_budget_date" classname="budget.QueryBudgetTest" time="0.0"/>
+  <testcase name="test_cross_month" classname="budget.QueryBudgetTest" time="0.0"/>
+  <testcase name="test_startDate_after_endDate" classname="budget.QueryBudgetTest" time="0.004"/>
+  <testcase name="test_same_date" classname="budget.QueryBudgetTest" time="0.0"/>
+  <testcase name="test_query_no_budget_date" classname="budget.QueryBudgetTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

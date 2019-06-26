@@ -3,7 +3,15 @@ package budget;
 public class Budget {
 
     private String date; // yyyy/MM
+
+    public Budget(String date, Integer amount) {
+        this.date = date;
+        this.amount = amount;
+    }
+
     private Integer amount;
+
+
 
     public String getDate() {
         return date;
